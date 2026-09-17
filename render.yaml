@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: soxl-dashboard
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      - key: CACHE_SEC
+        value: "20"
+      # Yahoo 가 클라우드 IP를 막을 때를 대비한 예비 소스 (선택). Render 대시보드에서 값 입력.
+      - key: FINNHUB_KEY
+        sync: false
